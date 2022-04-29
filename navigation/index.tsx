@@ -14,10 +14,15 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import TabOneScreen from '../screens/TodoScreen';
+import TabTwoScreen from '../screens/ProjectsScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import ProjectsScreen from '../screens/ProjectsScreen';
+import TodoScreen from '../screens/TodoScreen';
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import SplashScreen from '../screens/SplashScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,7 +43,29 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen 
+        name="Splash" 
+        component={SplashScreen} 
+        options={{
+          headerShown: false
+        }} 
+      />
+      <Stack.Screen 
+        name="SignIn" 
+        component={SignInScreen} 
+        options={{
+          title: "Sign In"
+        }} 
+      />
+      <Stack.Screen 
+        name="SignUp" 
+        component={SignUpScreen} 
+        options={{
+          title: "Sign Up"
+        }} 
+      />
+      <Stack.Screen name="Home" component={ProjectsScreen} />
+      <Stack.Screen name="Todo" component={TodoScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
